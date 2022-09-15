@@ -1,0 +1,4 @@
+runtime: nodejs12
+
+beta_settings:  
+  cloud_sql_instances: otca-lagartos:us-central1:bd-otca-lagartos

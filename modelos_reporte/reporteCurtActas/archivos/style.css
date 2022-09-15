@@ -1,0 +1,211 @@
+.invoice-box {
+    max-width: 800px;
+    margin: auto;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    color: #555;
+}
+h6 {
+    line-height: 13px;
+    margin-top:0px;
+    margin-bottom:0px;
+} 
+h4 {
+    line-height: 16px;
+    margin-top:0px;
+    margin-bottom:0px;
+} 
+.subtitulo {
+    line-height: 16px;
+    margin-top:-15px;
+    margin-bottom:7px;
+    margin-left: 5px;
+    font-size: 12px;
+
+}
+.tabla-grande{
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+.tabla-interno th{
+  border: 1px solid #b1afaf;
+}
+
+.tabla-interno tbody{
+    border-top: none;
+    border-bottom: none;
+}
+.tabla-interno tr{
+    border-left: none;
+    border-right: none;
+}
+
+.tabla-grande tbody tr th{
+    border-collapse: unset;
+    text-align: center;
+    font-weight: 200;
+    font-size: 11px;
+    padding: 0;
+
+}
+.tabla-interna{
+    margin: 0px;
+}
+.subtitulo-2{
+    line-height: 16px;
+    margin-top:10px;
+    margin-bottom:7px;
+    margin-left: 5px;
+    font-size: 12px;
+
+}
+.tabla-datos th{
+    border: 1px solid black;
+    border-spacing: 0;
+    font-weight: 100;
+    font-size: 12px;
+    padding: 5px 0;
+    line-height: 15px;
+    margin-top:0px;
+    padding-left: 10px;
+    border-collapse: collapse;
+}
+
+.border-table{    
+    border: 1px solid black;
+    border-radius: 7px;
+    border-spacing: 0px;
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-left: 5px;
+}
+.numero{
+    position: absolute;
+    top: 113px;
+    right: 8px;
+
+}
+.qrTraza{
+    position: absolute;
+    top: 65px;
+    width: 45px;
+    height:  45px;
+    right: 25px;
+
+}
+.qr{
+    text-align: center;
+    padding: 0px 0;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 20px;
+    line-height: 10px;
+    border-spacing: 5px;
+}
+.padding-border-left-0{
+    border-right: 1px solid black;
+}
+.padding-border-bottom-0{
+    border-bottom: 1px solid black;
+}
+.padding-border-right-0{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.padding-0{
+    font-weight: 200;
+    font-size: 11px;
+    padding: 10px 0;
+    line-height: 1px;
+    margin-top:0px;
+    padding-left: 5px;
+}
+h3 {
+    line-height: 18px;
+    margin-top:0px;
+    margin-bottom:0px;
+} 
+
+.invoice-box table {
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+}
+.invoice-box table td {
+    padding: 5px;
+    vertical-align: top;
+}
+.invoice-box table tr.top table td {
+    padding-bottom: 20px;
+}
+.invoice-box table tr.top table td.title {
+    font-size: 45px;
+    line-height: 45px;
+    color: #333;
+}
+.logo-right{
+    position: absolute;
+    right: 5px;
+}
+.logo-left{
+    text-align: center;
+    position: absolute;
+    width: 110px;
+    left: 5px;
+    top: 10px;
+}
+.borde-marco{
+    text-align: justify;
+    border: 1px solid black;
+    border-radius: 7px;
+    font-size: 11px;
+    line-height: 12px;
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-right: -8px;
+    padding: 8px;
+}
+.title-escudo{
+    font-size: 8px;
+}
+.title-center{
+    text-align: center;
+    width: 100%;
+}
+.invoice-box table tr.information table td {
+    padding-bottom: 40px;
+}
+.invoice-box table tr.heading td {
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+.invoice-box table tr.details td {
+    padding-bottom: 20px;
+}
+.invoice-box table tr.item td {
+    border-bottom: 1px solid #eee;
+}
+.invoice-box table tr.item.last td {
+    border-bottom: none;
+}
+.invoice-box table tr.total td:nth-child(2) {
+    border-top: 2px solid #eee;
+    font-weight: bold;
+}
+@media only screen and (max-width: 600px) {
+    .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+}

@@ -1,0 +1,53 @@
+{
+  "development": {
+    "username": "root",
+    "password": "BaseDeDatosLagartos-OTCA",
+    "database": "otca_lagartos",
+    "dialect": "mysql",    
+    "host": "/cloudsql/otca-lagartos:us-central1:bd-otca-lagartos",
+    "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+    },
+    "dialectOptions": {
+        "socketPath": "/cloudsql/otca-lagartos:us-central1:bd-otca-lagartos"
+    },
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "root",
+    "password": "BaseDeDatosLagartos-OTCA",
+    "database": "otca_lagartos",
+    "dialect": "mysql",    
+    "host": "/cloudsql/otca-lagartos:us-central1:bd-otca-lagartos",
+    "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+    },
+    "dialectOptions": {
+        "socketPath": "/cloudsql/otca-lagartos:us-central1:bd-otca-lagartos"
+    },
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "root",
+    "password": "BaseDeDatosLagartos-OTCA",
+    "database": "otca_lagartos",
+    "dialect": "mysql",    
+    "host": "/cloudsql/otca-lagartos:us-central1:bd-otca-lagartos",
+    "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+    },
+    "dialectOptions": {
+        "socketPath": "/cloudsql/otca-lagartos:us-central1:bd-otca-lagartos"
+    },
+    "operatorsAliases": false
+  }    
+}

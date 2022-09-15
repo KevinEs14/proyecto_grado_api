@@ -1,0 +1,788 @@
+{
+    "openapi" : "3.0.0",
+    "info" : {
+      "description" : "API para el monitoreo de la caza y comercio de lagartos en el\nterritorio boliviano\n",
+      "version" : "1.0.0",
+      "title" : "API Sistema de trazabilidad y comercio de lagartos"
+    },
+    "tags" : [ {
+      "name" : "cazadores",
+      "description" : "Operaciones que realizan los cazadores"
+    }, {
+      "name" : "usuarios",
+      "description" : "Operaciones para usuarios regulares"
+    }, {
+      "name" : "usuariosWeb",
+      "description" : "Operaciones para usuarios del sistema web"
+    } ],
+    "paths" : {
+      "/login" : {
+        "post" : {
+          "tags" : [ "cazadores" ],
+          "summary" : "inicio sesion",
+          "operationId" : "iniciarSesion",
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Usuario"
+                }
+              }
+            }
+          },
+          "description" : "Ruta para hacer el inicio de sesion\n",
+          "responses" : {
+            "200" : {
+              "description" : "Inicio de sesion correcto"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/login/{tokenId}" : {
+        "get" : {
+          "tags" : [ "cazadores" ],
+          "summary" : "verificar sesion",
+          "operationId" : "verificarSesion",
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "tokenId",
+            "schema" : {
+              "type" : "string"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para hacer la verificacion de inicio de sesion\n",
+          "responses" : {
+            "200" : {
+              "description" : "verificacion correcta"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/caza" : {
+        "get" : {
+          "tags" : [ "cazadores" ],
+          "summary" : "lista reportes",
+          "operationId" : "listaReportes",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          }, {
+            "ApiKeyAuth" : [ ]
+          } ],
+          "description" : "Ruta para obtener la lista de reportes de caza de un cazador\n",
+          "responses" : {
+            "200" : {
+              "description" : "lista de cazas",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "array",
+                    "items" : {
+                      "$ref" : "#/components/schemas/Caza"
+                    }
+                  }
+                }
+              }
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        },
+        "post" : {
+          "tags" : [ "cazadores" ],
+          "summary" : "agregar caza",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          }, {
+            "ApiKeyAuth" : [ ]
+          } ],
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CazaRequest"
+                }
+              }
+            }
+          },
+          "operationId" : "agregarCaza",
+          "description" : "Ruta para poder guardar una caza\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se guardo la caza"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/caza/multiple" : {
+        "post" : {
+          "tags" : [ "cazadores" ],
+          "summary" : "agregar multiple caza",
+          "operationId" : "agregarMultipleCaza",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          }, {
+            "ApiKeyAuth" : [ ]
+          } ],
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "cazas" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/CazaRequest"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description" : "Ruta para poder guardar varias cazas\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se guardaron las cazas"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/caza/pdf/{id}" : {
+        "get" : {
+          "tags" : [ "cazadores", "usuariosWeb" ],
+          "summary" : "reporte caza",
+          "operationId" : "reporteCaza",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          }, {
+            "ApiKeyAuth" : [ ]
+          } ],
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "id",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para obtener un reporte de caza\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el reporte"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/acta-cuero/pdf/{id}" : {
+        "get" : {
+          "tags" : [ "usuariosWeb" ],
+          "summary" : "reporte cuero",
+          "operationId" : "reporteCuero",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          }, {
+            "ApiKeyAuth" : [ ]
+          } ],
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "id",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para obtener un reporte de cuero\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el reporte"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/acta-carne/pdf/{id}" : {
+        "get" : {
+          "tags" : [ "usuariosWeb" ],
+          "summary" : "reporte carne",
+          "operationId" : "reporteCarne",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          }, {
+            "ApiKeyAuth" : [ ]
+          } ],
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "id",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para obtener un reporte de carne\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el reporte"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/curt-actas/carne/pdf/{id}/{gestion}" : {
+        "get" : {
+          "tags" : [ "usuariosWeb" ],
+          "summary" : "reporte custodia actas carne",
+          "operationId" : "reporteCustActasCarne",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          }, {
+            "ApiKeyAuth" : [ ]
+          } ],
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "id",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          }, {
+            "in" : "path",
+            "name" : "gestion",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para obtener un reporte de custodia de actas de carne por parte de la empresa\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el reporte"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/curt-actas/cuero/pdf/{id}/{gestion}" : {
+        "get" : {
+          "tags" : [ "usuariosWeb" ],
+          "summary" : "reporte custodia actas cuero",
+          "operationId" : "reporteCustActasCuero",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          }, {
+            "ApiKeyAuth" : [ ]
+          } ],
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "id",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          }, {
+            "in" : "path",
+            "name" : "gestion",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para obtener un reporte de custodia de actas de cuero por parte de la empresa\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el reporte"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/cust-cuero-tco/pdf/{id}/{gestion}" : {
+        "get" : {
+          "tags" : [ "usuariosWeb" ],
+          "summary" : "reporte custodia cuero regional",
+          "operationId" : "reporteCustCueroRegional",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          }, {
+            "ApiKeyAuth" : [ ]
+          } ],
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "id",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          }, {
+            "in" : "path",
+            "name" : "gestion",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para obtener un reporte de custodia de cuero por parte de la regional\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el reporte"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/general/pdf/{token}" : {
+        "get" : {
+          "tags" : [ "usuarios" ],
+          "summary" : "reporte qr",
+          "operationId" : "reportesQR",
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "token",
+            "schema" : {
+              "type" : "string"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para obtener los reportes con el escaneo del QR\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el reporte"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/profile" : {
+        "get" : {
+          "tags" : [ "cazadores" ],
+          "summary" : "perfil cazador",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          }, {
+            "ApiKeyAuth" : [ ]
+          } ],
+          "operationId" : "perfilCazador",
+          "description" : "Ruta para obtener el perfil del cazador en la aplicacion movil\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el perfil"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        },
+        "post" : {
+          "tags" : [ "cazadores" ],
+          "summary" : "subir documento verificacion",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          } ],
+          "operationId" : "documentoUsuario",
+          "description" : "Ruta para subir el documento de verificacion de un usuario\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se subio el archivo"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/departamentos" : {
+        "get" : {
+          "tags" : [ "usuarios" ],
+          "summary" : "obtener departamentos",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          } ],
+          "operationId" : "getDepartamentos",
+          "description" : "Ruta para poder obtener la lista de departamentos\n",
+          "responses" : {
+            "200" : {
+              "description" : "lista de departamentos",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "array",
+                    "items" : {
+                      "$ref" : "#/components/schemas/Departamento"
+                    }
+                  }
+                }
+              }
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/provincias" : {
+        "get" : {
+          "tags" : [ "usuarios" ],
+          "summary" : "obtener provincias",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          } ],
+          "operationId" : "getProvincias",
+          "description" : "Ruta para poder obtener la lista de provincias\n",
+          "responses" : {
+            "200" : {
+              "description" : "lista de  provincias",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "array",
+                    "items" : {
+                      "$ref" : "#/components/schemas/Provincia"
+                    }
+                  }
+                }
+              }
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/municipios" : {
+        "get" : {
+          "tags" : [ "usuarios" ],
+          "summary" : "obtener municipios",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          } ],
+          "operationId" : "getMunicipios",
+          "description" : "Ruta para poder obtener la lista de municipios\n",
+          "responses" : {
+            "200" : {
+              "description" : "lista de municipios",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "array",
+                    "items" : {
+                      "$ref" : "#/components/schemas/Municipio"
+                    }
+                  }
+                }
+              }
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/tcos" : {
+        "get" : {
+          "tags" : [ "usuarios" ],
+          "summary" : "obtener regionales",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          } ],
+          "operationId" : "getRegionales",
+          "description" : "Ruta para poder obtener la lista de regionales\n",
+          "responses" : {
+            "200" : {
+              "description" : "lista de regionales",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "array",
+                    "items" : {
+                      "$ref" : "#/components/schemas/Regional"
+                    }
+                  }
+                }
+              }
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/resoluciones/{id}" : {
+        "post" : {
+          "tags" : [ "usuariosWeb" ],
+          "summary" : "subir resolucion",
+          "operationId" : "subirResolucion",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          } ],
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "id",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para subir resoluciones de una Gestion\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el reporte"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        },
+        "get" : {
+          "tags" : [ "usuarios", "usuariosWeb" ],
+          "summary" : "obtener resolucion",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          } ],
+          "operationId" : "obtenerResolucion",
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "id",
+            "schema" : {
+              "type" : "integer"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para obtener la resolucion de la gestion actual\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo la resolucion"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/files/temp/file/{name}" : {
+        "get" : {
+          "tags" : [ "usuarios" ],
+          "summary" : "obtener archivo temporal",
+          "operationId" : "obtenerArchTemporal",
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "name",
+            "schema" : {
+              "type" : "string"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para obtener archivos temporales almacenados en el servidor\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el archivo"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      },
+      "/files/{path}/{name}" : {
+        "get" : {
+          "tags" : [ "usuarios" ],
+          "summary" : "obtener archivos",
+          "security" : [ {
+            "BearerAuth" : [ ]
+          } ],
+          "operationId" : "obtenerArch",
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "name",
+            "schema" : {
+              "type" : "string"
+            },
+            "required" : true
+          }, {
+            "in" : "path",
+            "name" : "path",
+            "schema" : {
+              "type" : "string"
+            },
+            "required" : true
+          } ],
+          "description" : "Ruta para obtener archivos  almacenados en el servidor\n",
+          "responses" : {
+            "200" : {
+              "description" : "Se obtuvo el archivo"
+            },
+            "500" : {
+              "description" : "No se pudo completar la solicitud"
+            }
+          }
+        }
+      }
+    },
+    "components" : {
+      "securitySchemes" : {
+        "BearerAuth" : {
+          "type" : "http",
+          "scheme" : "bearer",
+          "bearerFormat" : "JWT"
+        },
+        "ApiKeyAuth" : {
+          "type" : "apiKey",
+          "in" : "header",
+          "name" : "authorizationApp"
+        }
+      },
+      "schemas" : {
+        "CazaRequest" : {
+          "type" : "object",
+          "properties" : {
+            "cantidad" : {
+              "type" : "integer",
+              "example" : 30
+            },
+            "coorX" : {
+              "type" : "number",
+              "example" : 10.0
+            },
+            "coorY" : {
+              "type" : "number",
+              "example" : 10.0
+            }
+          }
+        },
+        "Usuario" : {
+          "type" : "object",
+          "properties" : {
+            "usuario" : {
+              "type" : "string",
+              "example" : "usuario"
+            },
+            "password" : {
+              "type" : "string",
+              "example" : "abc1234"
+            }
+          }
+        },
+        "Departamento" : {
+          "type" : "object",
+          "properties" : {
+            "itemId" : {
+              "type" : "integer",
+              "example" : 1
+            },
+            "nombre_departamento" : {
+              "type" : "string",
+              "example" : "La Paz"
+            }
+          }
+        },
+        "Provincia" : {
+          "type" : "object",
+          "properties" : {
+            "itemId" : {
+              "type" : "integer",
+              "example" : 1
+            },
+            "nombre_provincia" : {
+              "type" : "string",
+              "example" : "Abel Iturralde"
+            }
+          }
+        },
+        "Municipio" : {
+          "type" : "object",
+          "properties" : {
+            "itemId" : {
+              "type" : "integer",
+              "example" : 1
+            },
+            "nombre_municipio" : {
+              "type" : "string",
+              "example" : "Ixiamas"
+            }
+          }
+        },
+        "Regional" : {
+          "type" : "object",
+          "properties" : {
+            "itemId" : {
+              "type" : "integer",
+              "example" : 1
+            },
+            "nombre_tco" : {
+              "type" : "string",
+              "example" : "TACANA I"
+            }
+          }
+        },
+        "Caza" : {
+          "type" : "object",
+          "properties" : {
+            "itemId" : {
+              "type" : "integer",
+              "example" : 1
+            },
+            "cantidad" : {
+              "type" : "integer",
+              "example" : 50
+            },
+            "coor_x" : {
+              "type" : "number",
+              "example" : 4.564
+            },
+            "coor_y" : {
+              "type" : "number",
+              "example" : 10.465
+            },
+            "fecha_reporte" : {
+              "type" : "string",
+              "example" : "10-02-2021"
+            },
+            "cazador_itemId" : {
+              "type" : "integer",
+              "example" : 3
+            },
+            "submodulo_itemId" : {
+              "type" : "integer",
+              "example" : 2
+            },
+            "estado" : {
+              "type" : "boolean",
+              "example" : false
+            }
+          }
+        }
+      }
+    },
+    "servers" : [  {
+      "description" : "Servidor API Trazabilidad del Lagarto",
+      "url" : ""
+    } ]
+  }
