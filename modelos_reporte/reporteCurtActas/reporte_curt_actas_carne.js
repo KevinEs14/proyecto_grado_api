@@ -16,37 +16,20 @@ module.exports= function genCaza(reporte){
                     <table>
                     <tr>
                         <td class="logo-left">
-                            <img src="archivos/Escudo_de_Bolivia.svg" style="width:100%; max-width:50px;max-height:70px;"/>
-                            <div class="title-escudo">Estado Plurinacional de Bolivia</div>
+                            <img src="archivos/logo_ucb.png" style="width:100%; max-width:100px;max-height:130px;"/>
+                            
                         </td>
                         <td class="title-center">
-                            <h4>MINISTERIO DE MEDIO AMBIENTE Y AGUA</h4>
-                            <h6>VICEMINISTERIO DE MEDIO AMBIENTE, BIODIVERSIDAD, CAMBIOS CLIMATICOS, Y DE</h6>
-                            <h6>GESTION Y DESARROLLO FORESTAL</h6>
-                            <h6>DIRECCION GENERAL DE BIODIVERSIDAD Y AREAS PROTEGIDAS</h6>  
+                            <h4>SISTEMA DE TRAZABILIDAD</h4>                    
+                            <h6>GESTION Y DESARROLLO FORESTAL</h6> 
                             <div style="height:17px"></div>
                             <h3>REPORTE DE ACTAS DE TENENCIA DE CARNE</h3>
                             <h3>EN CUSTODIA DE LA EMPRESA</h3>
-                        </td>   
-                        <td class="logo-right">                                
-                            <img src="archivos/logo_mmaya2018.png" style="width:100%; max-width:120px;max-height:70px;"/>
-                        </td>
+                        </td>  
                         <td class="numero">                                
                             <h4>
                             </h4>
                         </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <th>
-                            <div class="borde-marco">
-                            En el marco del PROGRAMA NACIONAL PARA LA CONSERVACIÓN Y APROVECHAMIENTO SOSTENIBLE DEL LAGARTO
-                            (Caimán yacaré) se instituye la presente Acta, documento que tiene el carácter de Declaración Jurada y que se constituye en un instrumento público
-                            que denota la transparencia y legalidad del proceso de cosecha de lagartos, el establecimiento de información falsa en el presente de forma
-                            dolosa, será sancionada conforme a derecho.
-                            </div>
-                        </th>
                     </tr>
                 </table>
                     </td>
