@@ -32,7 +32,9 @@
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
-    "sequelize-cli": "^6.2.0"
+    "chai": "^4.3.6",
+    "sequelize-cli": "^6.2.0",
+    "supertest": "^6.2.4"
   },
   "repository": {
     "type": "git",

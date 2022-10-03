@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 module.exports = {
   async list(req, res) {
    try{
-    var item=await sequelize.query(`SELECT tco.tco, tco.itemId from catalogo_tco tco  where tco.municipio_itemId=`+req.params["id"], {raw:true, type: Sequelize.QueryTypes.SELECT});
+    var item=await sequelize.query(`SELECT tco.tco, tco.itemId from catalogo_tco tco  where tco.municipio_itemId=`+req.params["id"], {raw:true,logging:false, type: Sequelize.QueryTypes.SELECT});
     res.status(200).send(item)
   }
    catch(err){

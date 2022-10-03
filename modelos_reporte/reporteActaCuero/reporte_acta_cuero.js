@@ -243,6 +243,5 @@ module.exports= function genCaza(reporte){
     </body>
 </html>
         `;   
-        console.log(html);
     return html;
     }

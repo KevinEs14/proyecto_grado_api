@@ -32,7 +32,7 @@ module.exports = {
                 WHERE ac.itemId=`+itemId+`
                 and ac.estado=1 
                 and tco.estado=1
-                and gestion_tco.estado=1`, {raw:true, type: Sequelize.QueryTypes.SELECT});
+                and gestion_tco.estado=1`, {raw:true,logging:false, type: Sequelize.QueryTypes.SELECT});
                 var actaG=await sequelize.query(`
                 SELECT ac.*,tco.tco,mn.nombre nombre_municipio
                 ,pv.nombre nombre_provincia,dp.nombre as nombre_departamento,
@@ -69,7 +69,7 @@ module.exports = {
                 url.ci_exp_itemId=cierl.itemId
                 INNER JOIN catalogo_ci_exp ciecu on
                 ucu.ci_exp_itemId=ciecu.itemId
-                WHERE ac.estado=1 and ac.itemId=`+itemId, {raw:true, type: Sequelize.QueryTypes.SELECT}
+                WHERE ac.estado=1 and ac.itemId=`+itemId, {raw:true,logging:false, type: Sequelize.QueryTypes.SELECT}
                 );    
                 if(actaG.length!=0){ 
                     var actaCuero=actaG[0];

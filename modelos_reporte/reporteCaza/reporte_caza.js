@@ -1,7 +1,5 @@
 ﻿var functions=require('./archivos/functions');
 module.exports= function genCaza(reporte,ubicacion){
-    console.log(reporte);
-    console.log(reporte.caza['cazador.itemId']);
         var html=`
 
 <html>
@@ -75,6 +73,5 @@ module.exports= function genCaza(reporte,ubicacion){
     </body>
 </html>
         `;   
-        console.log(html);
     return html;
     }

@@ -38,7 +38,7 @@ module.exports = {
                 pv.itemId=mn.provinciaId
                 INNER JOIN vrhr_territorio.departamento dp on
                 dp.itemId=pv.departamentoId
-                WHERE ca.itemId=`+req.params["id"]+``, {raw:true, type: Sequelize.QueryTypes.SELECT});
+                WHERE ca.itemId=`+req.params["id"]+``, {raw:true, logging:false, type: Sequelize.QueryTypes.SELECT});
     var rep=await sequelize.query(`
                 SELECT 
                 cazador.itemId as "cazador.itemId",
@@ -68,7 +68,7 @@ module.exports = {
                 pv.itemId=mn.provinciaId
                 INNER JOIN vrhr_territorio.departamento dp on
                 dp.itemId=pv.departamentoId
-                WHERE caza.itemId=`+req.params["id"]+``, {raw:true, type: Sequelize.QueryTypes.SELECT});
+                WHERE caza.itemId=`+req.params["id"]+``, {raw:true, logging:false,type: Sequelize.QueryTypes.SELECT});
                 // Reportes
                 // .findAll({  
                 //     raw:true,
@@ -159,7 +159,6 @@ module.exports = {
                     qr1:qr1,
 			qr2:qr2
                 }
-                console.log(traza[0]);
 
                     var trazaQR=String(traza[0].dpitemId)+" - "+String(traza[0].pvitemId)+" - "
                     +String(traza[0].mnitemId)+" - "+String(traza[0].tco)+"  /  "+String(traza[0].cupo_total)+" - "+String(traza[0].gestion_itemId);
@@ -366,7 +365,6 @@ var callback = (err) => {
 	const fetch = require('node-fetch');
 var url="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s-marker-stroked+285A98("+x+","+y+")/"+x+","+y+",8,0/600x500@2x?access_token=pk.eyJ1Ijoib3RjYWxhZyIsImEiOiJja2l6MzBoMDAxM2N0MnFteTMwc3QwdjVnIn0.G4woqNAw-cX1p_LtyhbwmA";
 	const response = await fetch(url);
-console.log(url);
   	const data = await response.buffer();
   	//fs.writeFile(`./image.jpg`, buffer, () => 
     //console.log('finished downloading!'));
